@@ -41,9 +41,14 @@ public class PlayerMovement : AbstractMovement
     private void Update()
     {
         Vector3 copyOfPosition = transform.position;
+        float adjustedMoveSpeed = moveSpeed;
+        if (Input.GetAxis("HorizontalKey") != 0 && Input.GetAxis("VerticalKey") != 0)
+        {
+            adjustedMoveSpeed /= 1.41f;
+        }
         transform.position += new Vector3(
-            moveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey"),
-            moveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey"),
+            adjustedMoveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey"),
+            adjustedMoveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey"),
             0f
         );
         if (!CanMove())
