@@ -7,14 +7,17 @@ public class EnemyMovement : AbstractMovement
     GameObject player;
 
     SpriteRenderer spriteRenderer;
+    SpriteRenderer playerSR;
 
     public float moveSpeed;
+    public float closeDistance = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameController.gameController.player;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerSR = player.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -25,10 +28,10 @@ public class EnemyMovement : AbstractMovement
 
     private void Move()
     {
-        if (spriteRenderer.isVisible)
+        if (spriteRenderer.isVisible && !IsCloseEnough())
         {
             Vector2 copyOfPosition = transform.position;
-            Vector2 xAndYMovmentDegrees = vertAndHorRatio();
+            Vector2 xAndYMovmentDegrees = VertAndHorRatio();
             transform.position = new Vector2(
                 transform.position.x + xAndYMovmentDegrees.x * Time.deltaTime * moveSpeed,
                 transform.position.y + xAndYMovmentDegrees.y * Time.deltaTime * moveSpeed
@@ -37,14 +40,22 @@ public class EnemyMovement : AbstractMovement
             {
                 transform.position = copyOfPosition;
             }
+            FlipHor();
         }
-        FlipHor();
     }
 
-    private Vector2 vertAndHorRatio()
+    private bool IsCloseEnough()
+    {
+        Debug.Log((player.transform.position.y - transform.position.y) + " " + (playerSR.bounds.min.x - transform.position.x));
+        bool ret = Mathf.Abs(player.transform.position.x - transform.position.x) < closeDistance &&
+                    Mathf.Abs(playerSR.bounds.min.y - transform.position.y) < closeDistance;
+        return ret;
+    }
+
+    private Vector2 VertAndHorRatio()
     {
         float xDis = player.transform.position.x - transform.position.x;
-        float yDis = player.GetComponent<SpriteRenderer>().bounds.min.y - transform.position.y;
+        float yDis = playerSR.bounds.min.y - transform.position.y;
         float totalDis = Mathf.Abs(xDis) + Mathf.Abs(yDis);
         Vector2 retVec = new Vector2(
             xDis / totalDis,
