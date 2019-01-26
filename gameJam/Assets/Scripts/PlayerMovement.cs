@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : AbstractMovement
 {
     float moveSpeed = 4f;
     Vector3 forward, right;
@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = copyOfPosition;
         }
         Flip();
+        FlipHor();
     }
 
     private void Flip()
@@ -59,22 +60,18 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetAxis("HorizontalKey") == 1 && Input.GetAxis("VerticalKey") == 1 && dir != Dir.upRight)
             {
-                FlipHor(Dir.right);
                 dir = Dir.upRight;
             }
             else if (Input.GetAxis("HorizontalKey") == 1 && Input.GetAxis("VerticalKey") == -1 && dir != Dir.downRight)
             {
-                FlipHor(Dir.right);
                 dir = Dir.downRight;
             }
             else if (Input.GetAxis("HorizontalKey") == -1 && Input.GetAxis("VerticalKey") == 1 && dir != Dir.upLeft)
             {
-                FlipHor(Dir.left);
                 dir = Dir.upLeft;
             }
             else if (Input.GetAxis("HorizontalKey") == -1 && Input.GetAxis("VerticalKey") == -1 && dir != Dir.downLeft)
             {
-                FlipHor(Dir.left);
                 dir = Dir.downLeft;
             }
         }
@@ -82,12 +79,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetAxis("HorizontalKey") == 1 && dir != Dir.right)
             {
-                FlipHor(Dir.right);
                 dir = Dir.right;
             }
             else if (Input.GetAxis("HorizontalKey") == -1 && dir != Dir.left)
             {
-                FlipHor(Dir.left);
                 dir = Dir.left;
             }
             else if (Input.GetAxis("VerticalKey") == 1 && dir != Dir.up)
@@ -98,26 +93,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 dir = Dir.down;
             }
-        }
-    }
-
-    private void FlipHor(Dir givenDir)
-    {
-        if (transform.localScale.x > 0 && givenDir == Dir.left)
-        {
-            transform.localScale = new Vector3(
-                transform.localScale.x * -1,
-                transform.localScale.y,
-                transform.localScale.z
-            );
-        }
-        else if (transform.localScale.x < 0 && givenDir == Dir.right)
-        {
-            transform.localScale = new Vector3(
-                transform.localScale.x * -1,
-                transform.localScale.y,
-                transform.localScale.z
-            );
         }
     }
 
@@ -143,49 +118,5 @@ public class PlayerMovement : MonoBehaviour
         transform.position += upMovement;
     }
     **/
-
-    private bool CanMove()
-    {
-        /*
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        Collider2D[] colliderList = new Collider2D[5];
-        rb.OverlapCollider(contactFilter, colliderList);
-        foreach (Collider2D collider in colliderList)
-        {
-            if (collider != null)
-            {
-                Debug.Log(collider.name);
-            }
-        }
-        */
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        Vector2 point = new Vector2(
-            spriteRenderer.bounds.min.x,
-            spriteRenderer.bounds.min.y
-        );
-        Collider2D[] bottomLeftColliders = Physics2D.OverlapPointAll(point);
-        point = new Vector2(
-            spriteRenderer.bounds.max.x,
-            spriteRenderer.bounds.min.y
-        );
-        Collider2D[] bottomRightColliders = Physics2D.OverlapPointAll(point);
-        
-        int enoughGroundCount = 0;
-        foreach (Collider2D collider in bottomLeftColliders)
-        {
-            if (collider != null && collider.name.Equals("GroundMap"))
-            {
-                enoughGroundCount++;
-            }
-        }
-        foreach (Collider2D collider in bottomRightColliders)
-        {
-            if (collider != null && collider.name.Equals("GroundMap"))
-            {
-                enoughGroundCount++;
-            }
-        }
-        return enoughGroundCount >= 2;
-    }
 
 }
