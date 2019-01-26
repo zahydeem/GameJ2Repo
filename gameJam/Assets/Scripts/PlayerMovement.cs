@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     float moveSpeed = 4f;
     Vector3 forward, right;
+    ContactFilter2D contactFilter;
 
     enum Dir
     {
@@ -30,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
         forward = Vector3.Normalize(forward);
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
         dir = Dir.right;
+
+        contactFilter.useTriggers = false;
+        contactFilter.SetLayerMask(LayerMask.NameToLayer("Ground"));
+        contactFilter.useLayerMask = true;
         
     }
 
@@ -41,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
             0f
             );
         Flip();
+        CanMove();
     }
 
     private void Flip()
@@ -133,5 +139,34 @@ public class PlayerMovement : MonoBehaviour
         transform.position += upMovement;
     }
     **/
+
+    private bool CanMove()
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        Collider2D[] colliderList = new Collider2D[5];
+        rb.OverlapCollider(contactFilter, colliderList);
+        foreach (Collider2D collider in colliderList)
+        {
+            if (collider != null)
+            {
+                Debug.Log(collider.name);
+            }
+        }
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Vector2 point = new Vector2(
+            spriteRenderer.bounds.min.x,
+            spriteRenderer.bounds.min.y
+        );
+
+        Collider2D[] colliders = Physics2D.OverlapPointAll(point);
+        foreach (Collider2D collider in colliderList)
+        {
+            if (collider != null)
+            {
+                Debug.Log(collider.name);
+            }
+        }
+        return false;
+    }
 
 }
