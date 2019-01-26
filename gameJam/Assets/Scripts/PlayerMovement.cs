@@ -40,13 +40,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        Vector3 copyOfPosition = transform.position;
         transform.position += new Vector3(
             moveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey"),
             moveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey"),
             0f
-            );
+        );
+        if (!CanMove())
+        {
+            transform.position = copyOfPosition;
+        }
         Flip();
-        CanMove();
     }
 
     private void Flip()
@@ -142,6 +146,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CanMove()
     {
+        /*
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         Collider2D[] colliderList = new Collider2D[5];
         rb.OverlapCollider(contactFilter, colliderList);
@@ -152,21 +157,35 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log(collider.name);
             }
         }
+        */
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         Vector2 point = new Vector2(
             spriteRenderer.bounds.min.x,
             spriteRenderer.bounds.min.y
         );
-
-        Collider2D[] colliders = Physics2D.OverlapPointAll(point);
-        foreach (Collider2D collider in colliderList)
+        Collider2D[] bottomLeftColliders = Physics2D.OverlapPointAll(point);
+        point = new Vector2(
+            spriteRenderer.bounds.max.x,
+            spriteRenderer.bounds.min.y
+        );
+        Collider2D[] bottomRightColliders = Physics2D.OverlapPointAll(point);
+        
+        int enoughGroundCount = 0;
+        foreach (Collider2D collider in bottomLeftColliders)
         {
-            if (collider != null)
+            if (collider != null && collider.name.Equals("GroundMap"))
             {
-                Debug.Log(collider.name);
+                enoughGroundCount++;
             }
         }
-        return false;
+        foreach (Collider2D collider in bottomRightColliders)
+        {
+            if (collider != null && collider.name.Equals("GroundMap"))
+            {
+                enoughGroundCount++;
+            }
+        }
+        return enoughGroundCount >= 2;
     }
 
 }
