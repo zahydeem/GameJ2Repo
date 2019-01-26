@@ -38,7 +38,7 @@ public class PlayerMovement : AbstractMovement
         
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 copyOfPosition = transform.position;
         float adjustedMoveSpeed = moveSpeed;

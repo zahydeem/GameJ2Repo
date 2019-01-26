@@ -21,7 +21,7 @@ public class EnemyMovement : AbstractMovement
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
     }
