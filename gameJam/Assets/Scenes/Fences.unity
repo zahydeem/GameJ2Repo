@@ -937,12 +937,20 @@ Transform:
   m_Children:
   - {fileID: 898536241}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 850941929}
   - {fileID: 1653124047}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1653124046
+=======
+  - {fileID: 954728088}
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &954728087
+>>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
 =======
   - {fileID: 954728088}
   m_Father: {fileID: 0}
@@ -958,17 +966,23 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 1653124047}
   - component: {fileID: 1653124049}
   - component: {fileID: 1653124048}
   m_Layer: 0
   m_Name: Tilemap (2)
 =======
+=======
+>>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
   - component: {fileID: 954728088}
   - component: {fileID: 954728090}
   - component: {fileID: 954728089}
   m_Layer: 0
   m_Name: ZAsY
+<<<<<<< HEAD
+>>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
+=======
 >>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -976,7 +990,11 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!4 &1653124047
+=======
+--- !u!4 &954728088
+>>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
 =======
 --- !u!4 &954728088
 >>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
@@ -986,7 +1004,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 1653124046}
+=======
+  m_GameObject: {fileID: 954728087}
+>>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
 =======
   m_GameObject: {fileID: 954728087}
 >>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
@@ -996,9 +1018,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 932775536}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1653124048
+=======
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!483693784 &954728089
+>>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
 =======
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1010,7 +1038,11 @@ TilemapRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 1653124046}
+=======
+  m_GameObject: {fileID: 954728087}
+>>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
 =======
   m_GameObject: {fileID: 954728087}
 >>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
@@ -1042,8 +1074,13 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_SortingLayerID: 0
   m_SortingLayer: 0
+=======
+  m_SortingLayerID: 1937951825
+  m_SortingLayer: 1
+>>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
 =======
   m_SortingLayerID: 1937951825
   m_SortingLayer: 1
@@ -1058,7 +1095,11 @@ TilemapRenderer:
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1839735485 &1653124049
+=======
+--- !u!1839735485 &954728090
+>>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
 =======
 --- !u!1839735485 &954728090
 >>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
@@ -1067,6 +1108,7 @@ Tilemap:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 1653124046}
   m_Enabled: 1
@@ -1081,6 +1123,8 @@ Tilemap:
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 0, y: 0, z: 1}
 =======
+=======
+>>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
   m_GameObject: {fileID: 954728087}
   m_Enabled: 1
   m_Tiles:
@@ -1179,6 +1223,9 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -1, y: -4, z: 0}
   m_Size: {x: 2, y: 4, z: 1}
+<<<<<<< HEAD
+>>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
+=======
 >>>>>>> 9c00b9af572441bd826b806e4e1a37f24068f7ea
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
