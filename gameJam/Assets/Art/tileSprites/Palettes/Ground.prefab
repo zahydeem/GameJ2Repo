@@ -45,6 +45,7 @@ Tilemap:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   - first: {x: -9, y: -7, z: 0}
     second:
       m_TileIndex: 6
@@ -83,6 +84,8 @@ Tilemap:
       m_ColliderType: 1
 =======
 >>>>>>> parent of 49b4ea6... mystuff
+=======
+>>>>>>> parent of 478aae3... niceTiles
   - first: {x: -3, y: -1, z: 0}
     second:
       m_TileIndex: 4
@@ -119,6 +122,7 @@ Tilemap:
   - first: {x: 0, y: 1, z: 0}
     second:
       m_TileIndex: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
       m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
@@ -162,6 +166,9 @@ Tilemap:
 =======
       m_TileSpriteIndex: 0
 >>>>>>> parent of 49b4ea6... mystuff
+=======
+      m_TileSpriteIndex: 0
+>>>>>>> parent of 478aae3... niceTiles
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -177,6 +184,7 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
+<<<<<<< HEAD
 <<<<<<< HEAD
   - first: {x: -5, y: 5, z: 0}
     second:
@@ -204,6 +212,8 @@ Tilemap:
 >>>>>>> parent of 00e5fd9... tiles
 =======
 >>>>>>> parent of 49b4ea6... mystuff
+=======
+>>>>>>> parent of 478aae3... niceTiles
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 1
@@ -219,6 +229,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: f3eb6dce736671a468c40f5396cf46c5, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 831ee755ac34ded47a8ba7c931735f10, type: 2}
+<<<<<<< HEAD
 <<<<<<< HEAD
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 89fbc3bf393e7d6439c6c67b3bce319d, type: 2}
@@ -244,6 +255,8 @@ Tilemap:
 >>>>>>> parent of 00e5fd9... tiles
 =======
 >>>>>>> parent of 49b4ea6... mystuff
+=======
+>>>>>>> parent of 478aae3... niceTiles
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 7218751da9a8bba49b0a220fcc8aad56, type: 3}
@@ -254,16 +267,20 @@ Tilemap:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Data: {fileID: 21300000, guid: 8f676c37c41678344a2cb8f174ff7ef1, type: 3}
   - m_RefCount: 1
 =======
 >>>>>>> parent of 49b4ea6... mystuff
+=======
+>>>>>>> parent of 478aae3... niceTiles
     m_Data: {fileID: 21300000, guid: 59e823d668e9e504db148c5cc1f1dbc5, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 8f676c37c41678344a2cb8f174ff7ef1, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: d5d2b22aebec139489b6848d7033efd3, type: 3}
   m_TileMatrixArray:
+<<<<<<< HEAD
 <<<<<<< HEAD
   - m_RefCount: 16
 =======
@@ -284,6 +301,9 @@ Tilemap:
 =======
   - m_RefCount: 5
 >>>>>>> parent of 49b4ea6... mystuff
+=======
+  - m_RefCount: 5
+>>>>>>> parent of 478aae3... niceTiles
     m_Data:
       e00: 1
       e01: 0
@@ -302,6 +322,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -344,6 +365,14 @@ Tilemap:
   m_Origin: {x: -3, y: -1, z: 0}
   m_Size: {x: 6, y: 5, z: 1}
 >>>>>>> parent of 49b4ea6... mystuff
+=======
+  - m_RefCount: 5
+    m_Data: {r: 1, g: 1, b: 1, a: 1}
+  m_AnimationFrameRate: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Origin: {x: -3, y: -1, z: 0}
+  m_Size: {x: 6, y: 5, z: 1}
+>>>>>>> parent of 478aae3... niceTiles
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
