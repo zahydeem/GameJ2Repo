@@ -10,7 +10,7 @@ public class AbstractMovement : MonoBehaviour
     enum HorDir { left, right };
     HorDir horDir;
 
-    float epsilon = 0.01f;
+    float epsilon = 0.001f;
 
     private void Awake()
     {
