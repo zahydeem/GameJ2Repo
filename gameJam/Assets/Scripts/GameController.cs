@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
 
     public GameObject player;
 
+    public float toolBarSize;
+
     // Start is called before the first frame update
     void Awake()
     {
