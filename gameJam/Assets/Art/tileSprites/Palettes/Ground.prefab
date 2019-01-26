@@ -42,6 +42,7 @@ Tilemap:
   m_Enabled: 1
   m_Tiles:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - first: {x: -9, y: -7, z: 0}
     second:
       m_TileIndex: 6
@@ -89,6 +90,8 @@ Tilemap:
       m_ColliderType: 1
 =======
 >>>>>>> parent of 00e5fd9... tiles
+=======
+>>>>>>> parent of 00e5fd9... tiles
   - first: {x: 2, y: -1, z: 0}
     second:
       m_TileIndex: 2
@@ -134,6 +137,7 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
+<<<<<<< HEAD
   - first: {x: -9, y: 3, z: 0}
     second:
       m_TileIndex: 7
@@ -191,6 +195,8 @@ Tilemap:
       m_ColliderType: 1
 =======
 >>>>>>> parent of 00e5fd9... tiles
+=======
+>>>>>>> parent of 00e5fd9... tiles
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 1
@@ -199,6 +205,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: eb7195e4c79fa5e438f4ba40f66af96c, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 40132e5e95ecbc1489981fc18d67f8f6, type: 2}
+<<<<<<< HEAD
 <<<<<<< HEAD
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: f3eb6dce736671a468c40f5396cf46c5, type: 2}
@@ -222,6 +229,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 241772c32fd305a499cbfad1c52fc31c, type: 2}
 =======
 >>>>>>> parent of 00e5fd9... tiles
+=======
+>>>>>>> parent of 00e5fd9... tiles
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: dd36ea3c9e790f2488c294f24b33ab2c, type: 3}
@@ -230,6 +239,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 798696ff6e1a7b74a88e6bdfa2a1bfbe, type: 3}
   - m_RefCount: 1
+<<<<<<< HEAD
 <<<<<<< HEAD
     m_Data: {fileID: 21300000, guid: 8f676c37c41678344a2cb8f174ff7ef1, type: 3}
   - m_RefCount: 1
@@ -257,6 +267,11 @@ Tilemap:
   m_TileMatrixArray:
   - m_RefCount: 3
 >>>>>>> parent of 00e5fd9... tiles
+=======
+    m_Data: {fileID: 21300000, guid: 59e823d668e9e504db148c5cc1f1dbc5, type: 3}
+  m_TileMatrixArray:
+  - m_RefCount: 3
+>>>>>>> parent of 00e5fd9... tiles
     m_Data:
       e00: 1
       e01: 0
@@ -276,7 +291,11 @@ Tilemap:
       e33: 1
   m_TileColorArray:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - m_RefCount: 13
+=======
+  - m_RefCount: 3
+>>>>>>> parent of 00e5fd9... tiles
 =======
   - m_RefCount: 3
 >>>>>>> parent of 00e5fd9... tiles
@@ -290,8 +309,13 @@ Tilemap:
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Origin: {x: -10, y: -7, z: 0}
   m_Size: {x: 13, y: 14, z: 1}
+=======
+  m_Origin: {x: 0, y: -1, z: 0}
+  m_Size: {x: 3, y: 3, z: 1}
+>>>>>>> parent of 00e5fd9... tiles
 =======
   m_Origin: {x: 0, y: -1, z: 0}
   m_Size: {x: 3, y: 3, z: 1}
