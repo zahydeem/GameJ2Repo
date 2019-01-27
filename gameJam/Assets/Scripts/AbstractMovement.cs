@@ -73,7 +73,7 @@ public class AbstractMovement : MonoBehaviour
         lastPosition = transform.position;
     }
 
-    protected void PushOther(GameObject otherGameObject, float strength)
+    public void PushOther(GameObject otherGameObject, float strength)
     {
         thisCoroutine = PushRoutine(otherGameObject, strength);
         StartCoroutine(thisCoroutine);
@@ -86,7 +86,8 @@ public class AbstractMovement : MonoBehaviour
             otherGameObject.transform.position.x + XandYRatio.x * strength,
             otherGameObject.transform.position.y + XandYRatio.y * strength
         );
-        while (otherGameObject.transform.position != pushTo)
+        float timeStarted = Time.time;
+        while (Time.time - timeStarted < 0.1f)
         {
             otherGameObject.transform.position = Vector2.MoveTowards(otherGameObject.transform.position, pushTo, Time.deltaTime * strength * 15);
             yield return null;

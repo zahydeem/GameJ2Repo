@@ -42,6 +42,7 @@ public class GenericCreature : MonoBehaviour
                 damage += transform.GetChild(childIndex).GetComponent<ToolInfo>().GetDamage();
             }
         }
+        GetComponent<AbstractMovement>().PushOther(objectTakingDamage, 0.15f);
         objectTakingDamage.GetComponent<GenericCreature>().TakeDamage(damage);
     }
 

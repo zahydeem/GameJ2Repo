@@ -127,7 +127,6 @@ public class PlayerMovement : AbstractMovement
             {
                 if (collider.tag == "Enemy")
                 {
-                    PushOther(collider.gameObject, strength);
                     GetComponent<GenericCreature>().DealDamage(collider.gameObject);
                 }
             }

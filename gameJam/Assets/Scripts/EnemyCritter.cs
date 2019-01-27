@@ -64,9 +64,34 @@ public class EnemyCritter : EnemyMovement
             }
             yield return null;
         }
+        waitTimeStart = Time.time;
+        while (Time.time - waitTimeStart < 0.05f)
+        {
+            if (anit.GetInteger("Plau") == 0)
+            {
+                StopCoroutine(thisCoroutine);
+                yield return null;
+            }
+            Rebound(attackSpeed, xAndYMovementDegrees);
+            yield return null;
+
+        }
         isAttacking = false;
         StopCoroutine(thisCoroutine);
         yield return null;
+    }
+
+    void Rebound(float givenMoveSpeed, Vector2 xAndYMovementDegrees)
+    {
+        Vector2 copyOfPosition = transform.position;
+        transform.position = new Vector2(
+            transform.position.x - xAndYMovementDegrees.x * Time.deltaTime * attackSpeed,
+            transform.position.y - xAndYMovementDegrees.y * Time.deltaTime * attackSpeed
+        );
+        if (!CanMove())
+        {
+            transform.position = copyOfPosition;
+        }
     }
 
 }
