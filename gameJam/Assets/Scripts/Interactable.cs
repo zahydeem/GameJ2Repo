@@ -15,7 +15,7 @@ public abstract class Interactable : MonoBehaviour
     {
         if (playerWithinRange())
         {
-
+            Action();
         }
     }
 
