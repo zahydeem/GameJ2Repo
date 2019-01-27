@@ -96,6 +96,7 @@ public class PlayerMovement : AbstractMovement
     **/
     public void Attack()
     {
+        SwingSword();
         Vector2 centerPoint = DetermineSwingArea();
 
         Collider2D[] collidersAttack = Physics2D.OverlapBoxAll(centerPoint, new Vector2(swingSize/2, swingSize/2), 0f);
@@ -106,6 +107,11 @@ public class PlayerMovement : AbstractMovement
                 GetComponent<GenericCreature>().DealDamage(collider.gameObject);
             }
         }
+    }
+
+    void SwingSword()
+    {
+        transform.GetChild(0).GetComponent<Animator>().SetTrigger("DoSwingSword");
     }
 
     private Vector2 DetermineSwingArea()
