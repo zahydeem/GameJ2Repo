@@ -11,9 +11,10 @@ public class EnemyCritter : EnemyMovement
 
     IEnumerator thisCoroutine;
 
-    /*
     override protected void Attack()
     {
+    }
+        /*
         thisCoroutine = WaitRoutine();
         StartCoroutine(thisCoroutine);
 
