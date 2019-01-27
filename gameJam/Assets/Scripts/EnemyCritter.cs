@@ -9,13 +9,14 @@ public class EnemyCritter : EnemyMovement
 
     float attackTime = 1000f;
 
+    IEnumerator thisCoroutine;
+
+    /*
     override protected void Attack()
     {
-        float loopStartedTime = Time.time;
-        while (Time.time - loopStartedTime < waitTime)
-        {
-            
-        }
+        thisCoroutine = WaitRoutine();
+        StartCoroutine(thisCoroutine);
+
         loopStartedTime = Time.time;
         Collider2D thisCollider = GetComponent<Collider2D>();
         Collider2D playerCollider = player.GetComponent<Collider2D>();
@@ -30,4 +31,21 @@ public class EnemyCritter : EnemyMovement
         }
 
     }
+
+
+
+    IEnumerator WaitRoutine()
+    {
+        while (isInside)
+        {
+            GManager.numBones--;
+            yield return new WaitForSeconds(1);
+        }
+        if (!isInside)
+        {
+            StopCoroutine(thisCoroutine);
+            yield return null;
+        }
+    }
+    */
 }
