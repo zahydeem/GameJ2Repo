@@ -8,6 +8,12 @@ public class PlayerMovement : AbstractMovement
     Vector3 forward, right;
     ContactFilter2D contactFilter;
     float swingSize = 1f;
+    float swingSpeed = 400f;
+    IEnumerator thisCoroutine;
+    Transform swordTransform;
+    Quaternion startSwordRotation;
+    Vector3 startSwordPosition;
+    bool isAttacking;
 
     enum Dir
     {
@@ -27,7 +33,7 @@ public class PlayerMovement : AbstractMovement
         forward = Vector3.Normalize(forward);
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
         dir = Dir.right;
-
+        isAttacking = false;
 
     }
 
@@ -54,19 +60,19 @@ public class PlayerMovement : AbstractMovement
 
     private void Flip()
     {
-        if (Input.GetAxis("VerticalKey") == 1 && dir != Dir.up)
+        if (Input.GetAxis("VerticalKey") == 1)
         {
             dir = Dir.up;
         }
-        else if (Input.GetAxis("HorizontalKey") == -1 && dir != Dir.left)
+        else if (Input.GetAxis("HorizontalKey") == -1)
         {
             dir = Dir.left;
         }
-        else if (Input.GetAxis("HorizontalKey") == 1 && dir != Dir.right)
+        else if (Input.GetAxis("HorizontalKey") == 1)
         {
             dir = Dir.right;
         }
-        else if (Input.GetAxis("VerticalKey") == -1 && dir != Dir.down)
+        else if (Input.GetAxis("VerticalKey") == -1)
         {
             dir = Dir.down;
         }
@@ -96,22 +102,82 @@ public class PlayerMovement : AbstractMovement
     **/
     public void Attack()
     {
-        SwingSword();
-        Vector2 centerPoint = DetermineSwingArea();
-
-        Collider2D[] collidersAttack = Physics2D.OverlapBoxAll(centerPoint, new Vector2(swingSize/2, swingSize/2), 0f);
-        foreach (Collider2D collider in collidersAttack)
+        if (!isAttacking)
         {
-            if (collider.tag == "Enemy")
+            isAttacking = true;
+            SwingSword();
+            Vector2 centerPoint = DetermineSwingArea();
+
+            Collider2D[] collidersAttack = Physics2D.OverlapBoxAll(centerPoint, new Vector2(swingSize / 2, swingSize / 2), 0f);
+            foreach (Collider2D collider in collidersAttack)
             {
-                GetComponent<GenericCreature>().DealDamage(collider.gameObject);
+                if (collider.tag == "Enemy")
+                {
+                    GetComponent<GenericCreature>().DealDamage(collider.gameObject);
+                }
             }
         }
     }
 
     void SwingSword()
     {
-        transform.GetChild(0).GetComponent<Animator>().SetTrigger("DoSwingSword");
+        //transform.GetChild(0).GetComponent<Animator>().SetTrigger("DoSwingSword");
+        swordTransform = transform.GetChild(0).GetChild(0);
+        startSwordPosition = swordTransform.localPosition;
+        swordTransform.localPosition = new Vector3(
+            0f,
+            swordTransform.localPosition.y + 0.25f,
+            swordTransform.localPosition.z
+        );
+        startSwordRotation = swordTransform.localRotation;
+        swordTransform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        thisCoroutine = SwordSwingRoutine();
+        StartCoroutine(thisCoroutine);
+    }
+
+    void RestoreSword()
+    {
+        swordTransform.localPosition = startSwordPosition;
+        swordTransform.localRotation = startSwordRotation;
+        swordTransform.parent.rotation = Quaternion.Euler(0f, 0f, 0f);
+        isAttacking = false;
+    }
+
+    IEnumerator SwordSwingRoutine()
+    {
+        while (swordTransform.localRotation.eulerAngles.z < 180 - startSwordRotation.z)
+        {
+            if (dir == Dir.up)
+            {
+                swordTransform.parent.localRotation = Quaternion.Euler(0f, 0f, -90f);
+            }
+            else if (dir == Dir.down)
+            {
+                swordTransform.parent.localRotation = Quaternion.Euler(0f, 0f, 90f);
+            }
+            else
+            {
+                swordTransform.parent.localRotation = Quaternion.Euler(0f, 0f, 0f);
+
+            }
+            Vector3 rotationPoint = new Vector3(
+                transform.position.x,
+                transform.position.y - 0.05f,
+                transform.position.z
+            );
+            if (swordTransform.lossyScale.x > 0)
+            {
+                swordTransform.RotateAround(rotationPoint, Vector3.forward, Time.deltaTime * swingSpeed);
+            }
+            else
+            {
+                swordTransform.RotateAround(rotationPoint, Vector3.forward, -Time.deltaTime * swingSpeed);
+            }
+            yield return null;
+        }
+        RestoreSword();
+        StopCoroutine(thisCoroutine);
+        yield return null;
     }
 
     private Vector2 DetermineSwingArea()

@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GenericCreature : MonoBehaviour
 {
     public int maxHealth;
     public int currentHealth;
-
+    
     public int naturalDamage;
+
+    public float signalSpeed = 10f;
     
     private Animator anim;
 
@@ -53,6 +56,9 @@ public class GenericCreature : MonoBehaviour
             Die();
         }
     }
+
+
+
 
     //TODO
     private void Die()
