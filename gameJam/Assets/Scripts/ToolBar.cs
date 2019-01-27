@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ToolBar : MonoBehaviour
 {
@@ -13,21 +14,44 @@ public class ToolBar : MonoBehaviour
     {
         numCells = GameController.gameController.toolBarSize;
         Populate();
+        GameController.gameController.toolBar = gameObject;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PickUpTool(GameObject tool)
     {
-        
+        int slotNum = FindAvailableToolSlot();
+        if (slotNum != -1)
+        {
+            tool.transform.SetParent(cellArray[slotNum].transform);
+            tool.SetActive(false);
+            Image toolImage = cellArray[slotNum].transform.GetChild(0).GetComponent<Image>();
+            toolImage.sprite = tool.GetComponent<SpriteRenderer>().sprite;
+            toolImage.enabled = true;
+        }
+    }
+    public void DropTool()
+    {
+
+    }
+    public int FindAvailableToolSlot()
+    {
+        for (int i = 0; i < numCells; i++)
+        {
+            if (cellArray[i].transform.childCount < 2)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private void Populate()
     {
-        GameObject[] cellArray = new GameObject[Mathf.FloorToInt(numCells)];
+        cellArray = new GameObject[Mathf.FloorToInt(numCells)];
         for (int i = 0; i < numCells; i++)
         {
             cellArray[i] = CreateCell();
-        
+            cellArray[i].name = cellArray[i].name + " " + i;
         }
     }
 

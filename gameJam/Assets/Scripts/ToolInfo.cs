@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToolInfo : MonoBehaviour
+public class ToolInfo : Interactable
 {
     public int extraDamage = 0;
     public bool consumable = false;
     public int healthRestore = 0;
+
+    protected override void Action()
+    {
+        GameController.gameController.PickUpTool(gameObject);
+    }
 
     public int GetDamage()
     {
@@ -21,4 +26,6 @@ public class ToolInfo : MonoBehaviour
         }
         Destroy(this.gameObject);
     }
+
+    
 }

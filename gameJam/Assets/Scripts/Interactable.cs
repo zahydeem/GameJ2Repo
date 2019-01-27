@@ -11,7 +11,7 @@ public abstract class Interactable : MonoBehaviour
         playerWithinRange();
     }
 
-    private void OnMouseUp()
+    private void OnMouseUpAsButton()
     {
         if (playerWithinRange())
         {

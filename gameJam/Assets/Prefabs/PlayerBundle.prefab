@@ -541,4 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  note: {fileID: 0}
   toolBarSize: 8
+  currentBar: []
+  toolBar: {fileID: 0}

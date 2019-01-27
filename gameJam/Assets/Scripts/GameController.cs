@@ -10,18 +10,20 @@ public class GameController : MonoBehaviour
     public GameObject player;
     public GameObject note;
 
-    public float toolBarSize;
-    
+    public int toolBarSize;
+
+    public GameObject[] currentBar;
+
+    public GameObject toolBar;
+
 
     // Start is called before the first frame update
     void Awake()
     {
         gameController = this;
         player = transform.GetChild(0).gameObject;
-         
-        
-        
-     
+
+        currentBar = new GameObject[toolBarSize];
     }
 
     private void Update()
@@ -29,29 +31,36 @@ public class GameController : MonoBehaviour
         
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            GameObject clicked = SelectObject();
-            Debug.Log(clicked.name);
-            if (clicked != null && player.GetComponent<PlayerMovement>().isWithinRange(clicked))
+            Collider2D[] allClicked = SelectObjects();
+            for (int i = 0; i < allClicked.Length; i++)
             {
-                if (SelectObject().tag == "Interactable")
+                if (player.GetComponent<PlayerMovement>().isWithinRange(allClicked[i].gameObject))
                 {
-                    player.GetComponent<PlayerMovement>().ReachFor();
-
-                }
-                else if (SelectObject().tag == "Note")
-                {
-                    note.GetComponent<NoteSelect>().Mess();
-                }
-                else
-                {
-                    player.GetComponent<PlayerMovement>().Attack();
+                    if (allClicked[i].gameObject.GetComponent<ToolInfo>() != null)
+                    {
+                        Debug.Log("Working");
+                        PickUpTool(allClicked[i].gameObject);
+                        player.GetComponent<PlayerMovement>().ReachFor();
+                        return;
+                    }
+                    else if (allClicked[i].tag == "Note")
+                    {
+                        note.GetComponent<NoteSelect>().Mess();
+                        return;
+                    }
                 }
             }
+            player.GetComponent<PlayerMovement>().Attack();
         }
     }
-  
-    private GameObject SelectObject()
+
+    public void PickUpTool(GameObject tool)
     {
-        return Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero).collider.gameObject;
+        toolBar.GetComponent<ToolBar>().PickUpTool(tool);
+    }
+
+    private Collider2D[] SelectObjects()
+    {
+        return Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 }
