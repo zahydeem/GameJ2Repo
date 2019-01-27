@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeArmAnimation : MonoBehaviour
+public class ChangeSprites : MonoBehaviour
 {
-    Animator anim;
+    public Sprite frontGhost, backGhost, idleGhost, sideMoveGhost;
+
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -16,23 +17,23 @@ public class ChangeArmAnimation : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            anim.SetInteger("Movement", 4);
+            this.GetComponent<SpriteRenderer>().sprite = backGhost;
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            anim.SetInteger("Movement", 1);
+            this.GetComponent<SpriteRenderer>().sprite = sideMoveGhost;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            anim.SetInteger("Movement", 2);
+            this.GetComponent<SpriteRenderer>().sprite = sideMoveGhost;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            anim.SetInteger("Movement", 3);
+            this.GetComponent<SpriteRenderer>().sprite = frontGhost;
         }
         else
         {
-            anim.SetInteger("Movement", 0);
+            this.GetComponent<SpriteRenderer>().sprite = idleGhost;
         }
     }
 }
