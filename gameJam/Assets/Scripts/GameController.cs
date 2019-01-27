@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
             {
                 if (SelectObject().tag == "Interactable")
                 {
-
+                    player.GetComponent<PlayerMovement>().ReachFor();
                 }
                 else
                 {

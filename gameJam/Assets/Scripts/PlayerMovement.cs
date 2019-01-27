@@ -219,9 +219,11 @@ public class PlayerMovement : AbstractMovement
         if (dir == Dir.up || dir == Dir.down)
         {
             yReach /= 2;
+            xReach /= 1.33f;
         }
         else
         {
+            yReach /= 1.33f;
             xReach /= 2;
         }
 
@@ -274,5 +276,11 @@ public class PlayerMovement : AbstractMovement
             transform.position.y + point.y
         );
         return point;
+    }
+
+    public void ReachFor()
+    {
+        Animator handAnim = transform.GetChild(1).GetComponent<Animator>();
+        handAnim.SetTrigger("Reach");
     }
 }
