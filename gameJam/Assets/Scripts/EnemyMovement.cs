@@ -13,6 +13,8 @@ public abstract class EnemyMovement : AbstractMovement
     public float closeDistance = 1f;
 
     protected bool isAttacking;
+    protected Animator anit;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,9 @@ public abstract class EnemyMovement : AbstractMovement
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerSR = player.GetComponent<SpriteRenderer>();
         isAttacking = false;
+        
+        anit = GetComponent<Animator>();
+       
     }
 
     // Update is called once per frame

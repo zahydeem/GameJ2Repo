@@ -9,8 +9,11 @@ public class EnemyCritter : EnemyMovement
 
     float attackTime = 1;
     float waitTimeStart;
+    
 
     IEnumerator thisCoroutine;
+
+   
 
     override protected void Attack()
     {
@@ -33,7 +36,13 @@ public class EnemyCritter : EnemyMovement
 
     IEnumerator AttackRoutine()
     {
+        
         yield return new WaitForSeconds(waitTime);
+        if (anit.GetInteger("Plau") == 0)
+        {
+            StopCoroutine(thisCoroutine);
+            yield return null;
+        }
         Collider2D thisCollider = GetComponent<Collider2D>();
         Collider2D playerCollider = player.GetComponent<Collider2D>();
         Vector2 xAndYMovementDegrees = VertAndHorRatio();
@@ -41,6 +50,11 @@ public class EnemyCritter : EnemyMovement
         bool hit = false;
         while (Time.time - waitTimeStart < attackTime && !hit)
         {
+            if (anit.GetInteger("Plau") == 0)
+            {
+                StopCoroutine(thisCoroutine);
+                yield return null;
+            }
             Lung(attackSpeed, xAndYMovementDegrees);
 
             if (GetComponent<Collider2D>().OverlapPoint(player.transform.position))

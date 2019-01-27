@@ -8,11 +8,14 @@ public class GenericCreature : MonoBehaviour
     public int currentHealth;
 
     public int naturalDamage;
+    
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         RefreshHealth();
+        anim = GetComponent<Animator>();
     }
 
     public void RefreshHealth()
@@ -54,6 +57,16 @@ public class GenericCreature : MonoBehaviour
     //TODO
     private void Die()
     {
+        
+        anim.SetInteger("Plau",0);
+        StartCoroutine(WaitForDeath());
+
+        
+    }
+
+    IEnumerator WaitForDeath()
+    {
+        yield return new WaitForSeconds(1.2f);
         Destroy(this.gameObject);
     }
 }
