@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ChangeEnemy : MonoBehaviour
 {
+    /*
     public Sprite D1, D2, D3;
-    int tick = 0;
+    i
 
     // Start is called before the first frame update
     void Start()
@@ -16,10 +17,8 @@ public class ChangeEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(Next);
-        tick++;
-
-        if(tick%1 ==0)
+        St
+        
         this.GetComponent<SpriteRenderer>().sprite = D1;
         this.GetComponent<SpriteRenderer>().sprite = D1;
         this.GetComponent<SpriteRenderer>().sprite = D1;
@@ -28,6 +27,7 @@ public class ChangeEnemy : MonoBehaviour
 
     IEnumerator Next()
     {
-        yield re
+
     }
+    */
 }
