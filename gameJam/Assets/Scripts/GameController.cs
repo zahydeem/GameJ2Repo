@@ -22,8 +22,10 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            if (SelectObject().tag == "Interactable")
+            GameObject clicked = SelectObject();
+            if (clicked != null && !clicked.name.Equals("Ground") && player.GetComponent<PlayerMovement>().isWithinRange(clicked))
             {
+<<<<<<< HEAD
 
                 Destroy(SelectObject());
 
@@ -31,12 +33,23 @@ public class GameController : MonoBehaviour
             else 
             {
                 player.GetComponent<PlayerMovement>().Attack();
+=======
+                if (SelectObject().tag == "Interactable")
+                {
+                    player.GetComponent<PlayerMovement>().ReachFor();
+                }
+                else
+                {
+                    player.GetComponent<PlayerMovement>().Attack();
+                }
+>>>>>>> 26b70c9c66a1d60cabb931332f8793b75ed4e955
             }
         }
     }
-    
+
     private GameObject SelectObject()
     {
         return Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero).collider.gameObject;
     }
+
 }
