@@ -10,16 +10,18 @@ public class GameController : MonoBehaviour
     public GameObject player;
 
     public float toolBarSize;
-    Canvas note;
-    private Text text; 
+    public Text text; 
 
     // Start is called before the first frame update
     void Awake()
     {
         gameController = this;
         player = transform.GetChild(0).gameObject;
-        note = GetComponent<Canvas>();
-        text = GetComponent<Text>();
+        
+      
+        
+       // text = GetComponent<Text>();
+        text.text = "Hi";
         
     }
 
