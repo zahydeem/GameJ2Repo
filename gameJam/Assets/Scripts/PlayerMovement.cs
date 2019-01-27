@@ -9,7 +9,7 @@ public class PlayerMovement : AbstractMovement
 
     float moveSpeed = 4f;
     Vector3 forward, right;
-    ContactFilter2D contactFilter;
+
     public float reach = 1f;
     float swingSpeed = 400f;
     IEnumerator thisCoroutine;
@@ -17,7 +17,7 @@ public class PlayerMovement : AbstractMovement
     Quaternion startSwordRotation;
     Vector3 startSwordPosition;
     bool isAttacking;
-
+    
     enum Dir
     {
         right,
@@ -31,10 +31,6 @@ public class PlayerMovement : AbstractMovement
     // Start is called before the first frame update
     void Start()
     {
-        forward = Camera.main.transform.forward;
-        forward.y = 0;
-        forward = Vector3.Normalize(forward);
-        right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
         dir = Dir.right;
         isAttacking = false;
 
@@ -68,29 +64,36 @@ public class PlayerMovement : AbstractMovement
 
     private void Flip()
     {
+        Animator handAnim = transform.GetChild(1).GetComponent<Animator>();
+        string variableName = "Movement";
         if (Input.GetAxis("VerticalKey") == 1)
         {
             dir = Dir.up;
             this.GetComponent<SpriteRenderer>().sprite = backGhost;
+            handAnim.SetInteger(variableName, 4);
         }
         else if (Input.GetAxis("HorizontalKey") == -1)
         {
             dir = Dir.left;
             this.GetComponent<SpriteRenderer>().sprite = sideMoveGhost;
+            handAnim.SetInteger(variableName, 1);
         }
         else if (Input.GetAxis("HorizontalKey") == 1)
         {
             dir = Dir.right;
             this.GetComponent<SpriteRenderer>().sprite = sideMoveGhost;
+            handAnim.SetInteger(variableName, 2);
         }
         else if (Input.GetAxis("VerticalKey") == -1)
         {
             dir = Dir.down;
             this.GetComponent<SpriteRenderer>().sprite = frontGhost;
+            handAnim.SetInteger(variableName, 3);
         }
         else if ((dir == Dir.left || dir == Dir.right) && Input.GetAxis("HorizontalKey") == 0)
         {
             this.GetComponent<SpriteRenderer>().sprite = idleGhost;
+            handAnim.SetInteger(variableName, 0);
         }
     }
 
