@@ -71,4 +71,22 @@ public class AbstractMovement : MonoBehaviour
         }
         lastPosition = transform.position;
     }
+
+    protected void PushOther(GameObject otherGameObject, float strength)
+    {
+        Vector2 XandYRatio = distanceXAndYRatio(otherGameObject);
+        otherGameObject.transform.position = new Vector2(
+            otherGameObject.transform.position.x + XandYRatio.x * strength,
+            otherGameObject.transform.position.y + XandYRatio.y * strength
+        );
+    }
+
+    protected Vector2 distanceXAndYRatio(GameObject otherObject)
+    {
+        float xDis = transform.position.x - otherObject.transform.position.x;
+        float yDis = transform.position.y - otherObject.transform.position.y;
+        float totalDis = xDis + yDis;
+
+        return new Vector2(xDis / totalDis, yDis / totalDis);
+    }
 }
