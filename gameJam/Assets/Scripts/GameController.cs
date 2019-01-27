@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     {
         gameController = this;
         player = transform.GetChild(0).gameObject;
+        
     }
 
     private void Update()
@@ -23,6 +24,9 @@ public class GameController : MonoBehaviour
         {
             if (SelectObject().tag == "Interactable")
             {
+
+                Destroy(SelectObject());
+
             }
             else 
             {

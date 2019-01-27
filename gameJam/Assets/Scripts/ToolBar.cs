@@ -6,6 +6,7 @@ public class ToolBar : MonoBehaviour
 {
     public GameObject cellPrefab;
     private float numCells;
+    private GameObject[] cellArray;
 
     // Start is called before the first frame update
     void Start()
@@ -22,15 +23,18 @@ public class ToolBar : MonoBehaviour
 
     private void Populate()
     {
+        GameObject[] cellArray = new GameObject[Mathf.FloorToInt(numCells)];
         for (int i = 0; i < numCells; i++)
         {
-            CreateCell();
+            cellArray[i] = CreateCell();
+        
         }
     }
 
-    private void CreateCell()
+    private GameObject CreateCell()
     {
         GameObject cell;
         cell = Instantiate(cellPrefab, transform);
+        return cell;
     }
 }
