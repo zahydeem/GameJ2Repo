@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -28,7 +29,10 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("TitleScreen");
+        }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             Collider2D[] allClicked = SelectObjects();

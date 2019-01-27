@@ -16,6 +16,10 @@ public class ToolInfo : Interactable
         {
             Consume();
         }
+        else
+        {
+            GameController.gameController.PickUpTool(this.gameObject);
+        }
     }
 
     public int GetDamage()

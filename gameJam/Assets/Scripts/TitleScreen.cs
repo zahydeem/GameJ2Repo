@@ -7,6 +7,6 @@ public class TitleScreen : MonoBehaviour
 {
     public void EnterGame()
     {
-        SceneManager.LoadScene(SceneManager.GetSceneAt(SceneManager.GetActiveScene().buildIndex + 1).name);
+        SceneManager.LoadScene("Island1");
     }
 }
