@@ -22,9 +22,8 @@ public class GenericCreature : MonoBehaviour
 
     public void DealDamage(GameObject objectTakingDamage)
     {
-        int childCount = transform.GetChildCount();
         int damage = naturalDamage;
-        for (int childIndex = 0; childIndex < childCount; childIndex++)
+        for (int childIndex = 0; childIndex < transform.childCount; childIndex++)
         {
             if (transform.GetChild(childIndex).tag == "Tool")
             {

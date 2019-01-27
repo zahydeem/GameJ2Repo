@@ -24,6 +24,6 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        healthImage.fillAmount = playerCreatureScript.currentHealth / playerCreatureScript.maxHealth;
+        healthImage.fillAmount = (float)playerCreatureScript.currentHealth / playerCreatureScript.maxHealth;
     }
 }

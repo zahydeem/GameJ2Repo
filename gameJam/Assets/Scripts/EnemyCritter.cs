@@ -38,13 +38,15 @@ public class EnemyCritter : EnemyMovement
         Collider2D playerCollider = player.GetComponent<Collider2D>();
         Vector2 xAndYMovementDegrees = VertAndHorRatio();
         waitTimeStart = Time.time;
-        while (Time.time - waitTimeStart < attackTime)
+        bool hit = false;
+        while (Time.time - waitTimeStart < attackTime && !hit)
         {
             Lung(attackSpeed, xAndYMovementDegrees);
-            if (thisCollider.IsTouching(playerCollider))
+
+            if (GetComponent<Collider2D>().OverlapPoint(player.transform.position))
             {
                 GetComponent<GenericCreature>().DealDamage(player);
-                break;
+                hit = true;
             }
             yield return null;
         }
