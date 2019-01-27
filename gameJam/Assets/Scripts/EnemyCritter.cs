@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class EnemyCritter : EnemyMovement
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    float waitTime = 2000f;
+    float attackSpeed = 8f;
 
-    // Update is called once per frame
-    void Update()
+    float attackTime = 1000f;
+
+    override protected void Attack()
     {
-        Move();
+        float loopStartedTime = Time.time;
+        while (Time.time - loopStartedTime < waitTime)
+        {
+            
+        }
+        loopStartedTime = Time.time;
+        Collider2D thisCollider = GetComponent<Collider2D>();
+        Collider2D playerCollider = player.GetComponent<Collider2D>();
+        while (Time.time - loopStartedTime < attackTime)
+        {
+            Move(attackSpeed);
+            if (thisCollider.IsTouching(playerCollider))
+            {
+                GetComponent<GenericCreature>().DealDamage(player);
+                break;
+            }
+        }
+
     }
 }

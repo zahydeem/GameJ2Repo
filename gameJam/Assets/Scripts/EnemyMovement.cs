@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : AbstractMovement
+public abstract class EnemyMovement : AbstractMovement
 {
-    GameObject player;
+    protected GameObject player;
 
-    SpriteRenderer spriteRenderer;
-    SpriteRenderer playerSR;
+    protected SpriteRenderer spriteRenderer;
+    protected SpriteRenderer playerSR;
 
     public float moveSpeed;
     public float closeDistance = 1f;
@@ -23,18 +23,25 @@ public class EnemyMovement : AbstractMovement
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+        if (IsCloseEnough())
+        {
+            Attack();
+        }
+        else
+        {
+            Move(moveSpeed);
+        }
     }
 
-    protected void Move()
+    protected void Move(float givenMoveSpeed)
     {
         if (spriteRenderer.isVisible)
         {
             Vector2 copyOfPosition = transform.position;
             Vector2 xAndYMovmentDegrees = VertAndHorRatio();
             transform.position = new Vector2(
-                transform.position.x + xAndYMovmentDegrees.x * Time.deltaTime * moveSpeed,
-                transform.position.y + xAndYMovmentDegrees.y * Time.deltaTime * moveSpeed
+                transform.position.x + xAndYMovmentDegrees.x * Time.deltaTime * givenMoveSpeed,
+                transform.position.y + xAndYMovmentDegrees.y * Time.deltaTime * givenMoveSpeed
             );
             if (!CanMove())
             {
@@ -44,15 +51,14 @@ public class EnemyMovement : AbstractMovement
         }
     }
 
-    /*
-    private bool IsCloseEnough()
+
+    protected bool IsCloseEnough()
     {
-        Debug.Log((player.transform.position.y - transform.position.y) + " " + (playerSR.bounds.min.x - transform.position.x));
         bool ret = Mathf.Abs(player.transform.position.x - transform.position.x) < closeDistance &&
                     Mathf.Abs(playerSR.bounds.min.y - transform.position.y) < closeDistance;
         return ret;
     }
-    */   
+       
 
     private Vector2 VertAndHorRatio()
     {
@@ -65,4 +71,6 @@ public class EnemyMovement : AbstractMovement
         );
         return retVec;
     }
+
+    protected abstract void Attack();
 }

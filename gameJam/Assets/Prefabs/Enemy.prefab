@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1096363268134954596}
   - component: {fileID: 3139653431699151046}
   - component: {fileID: 3319887121442257111}
+  - component: {fileID: 5564657893251961660}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -110,3 +111,29 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   naturalDamage: 2
+--- !u!61 &5564657893251961660
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096363268134954597}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1.6, y: 1.6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
