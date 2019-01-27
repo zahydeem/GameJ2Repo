@@ -17,8 +17,22 @@ public class GameController : MonoBehaviour
         player = transform.GetChild(0).gameObject;
     }
 
-    private void OnMouseUp()
+    private void Update()
     {
-
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            if (SelectObject().tag == "Interactable")
+            {
+            }
+            else 
+            {
+                player.GetComponent<PlayerMovement>().Attack();
+            }
+        }
+    }
+    
+    private GameObject SelectObject()
+    {
+        return Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero).collider.gameObject;
     }
 }

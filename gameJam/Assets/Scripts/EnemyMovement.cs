@@ -26,7 +26,6 @@ public abstract class EnemyMovement : AbstractMovement
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log("Player Health: " + player.GetComponent<GenericCreature>().currentHealth);
         if (!isAttacking)
         {
             if (IsCloseEnough())

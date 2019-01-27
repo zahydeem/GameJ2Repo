@@ -7,18 +7,14 @@ public class PlayerMovement : AbstractMovement
     float moveSpeed = 4f;
     Vector3 forward, right;
     ContactFilter2D contactFilter;
+    float swingSize = 1f;
 
     enum Dir
     {
         right,
         left,
-        up,
         down,
-        upRight,
-        downRight,
-        upLeft,
-        downLeft,
-        none
+        up
     };
 
     Dir dir;
@@ -61,43 +57,21 @@ public class PlayerMovement : AbstractMovement
 
     private void Flip()
     {
-        if (Input.GetAxis("HorizontalKey") != 0 && Input.GetAxis("VerticalKey") != 0)
+        if (Input.GetAxis("HorizontalKey") == 1 && dir != Dir.right)
         {
-            if (Input.GetAxis("HorizontalKey") == 1 && Input.GetAxis("VerticalKey") == 1 && dir != Dir.upRight)
-            {
-                dir = Dir.upRight;
-            }
-            else if (Input.GetAxis("HorizontalKey") == 1 && Input.GetAxis("VerticalKey") == -1 && dir != Dir.downRight)
-            {
-                dir = Dir.downRight;
-            }
-            else if (Input.GetAxis("HorizontalKey") == -1 && Input.GetAxis("VerticalKey") == 1 && dir != Dir.upLeft)
-            {
-                dir = Dir.upLeft;
-            }
-            else if (Input.GetAxis("HorizontalKey") == -1 && Input.GetAxis("VerticalKey") == -1 && dir != Dir.downLeft)
-            {
-                dir = Dir.downLeft;
-            }
+            dir = Dir.right;
         }
-        else
+        else if (Input.GetAxis("HorizontalKey") == -1 && dir != Dir.left)
         {
-            if (Input.GetAxis("HorizontalKey") == 1 && dir != Dir.right)
-            {
-                dir = Dir.right;
-            }
-            else if (Input.GetAxis("HorizontalKey") == -1 && dir != Dir.left)
-            {
-                dir = Dir.left;
-            }
-            else if (Input.GetAxis("VerticalKey") == 1 && dir != Dir.up)
-            {
-                dir = Dir.up;
-            }
-            else if (Input.GetAxis("VerticalKey") == -1 && dir != Dir.down)
-            {
-                dir = Dir.down;
-            }
+            dir = Dir.left;
+        }
+        else if (Input.GetAxis("VerticalKey") == 1 && dir != Dir.up)
+        {
+            dir = Dir.up;
+        }
+        else if (Input.GetAxis("VerticalKey") == -1 && dir != Dir.down)
+        {
+            dir = Dir.down;
         }
     }
 
@@ -123,5 +97,16 @@ public class PlayerMovement : AbstractMovement
         transform.position += upMovement;
     }
     **/
+    public void Attack()
+    {
+        Vector2[] points = DetermineSwingArea();
 
+        Collider2D[] collidersAttack = Physics2D.OverlapAreaAll(points[0], points[1]);
+    }
+
+    private Vector2[] DetermineSwingArea()
+    {
+        //if (dir = Dir.)
+        return null;
+    }
 }
