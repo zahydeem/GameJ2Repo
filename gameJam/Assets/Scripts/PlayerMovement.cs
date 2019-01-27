@@ -28,10 +28,7 @@ public class PlayerMovement : AbstractMovement
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
         dir = Dir.right;
 
-        contactFilter.useTriggers = false;
-        contactFilter.SetLayerMask(LayerMask.NameToLayer("Ground"));
-        contactFilter.useLayerMask = true;
-        
+
     }
 
     private void FixedUpdate()
