@@ -4,45 +4,51 @@ using UnityEngine;
 
 public class EnemyCritter : EnemyMovement
 {
-    float waitTime = 2f;
-    float attackSpeed = 8f;
+    float waitTime = 1f;
+    float attackSpeed = 5f;
 
-    float attackTime = 1000f;
+    float attackTime = 1;
     float waitTimeStart;
 
     IEnumerator thisCoroutine;
 
     override protected void Attack()
     {
-        thisCoroutine = WaitRoutine();
-        StartCoroutine(thisCoroutine);
-
-        waitTimeStart = Time.time;
         thisCoroutine = AttackRoutine();
         StartCoroutine(thisCoroutine);
     }
 
-
-
-    IEnumerator WaitRoutine()
+    private void Lung(float givenMoveSpeed, Vector2 xAndYMovementDegrees)
     {
-        yield break new WaitForSeconds(waitTime);
-        StopCoroutine(thisCoroutine);
-        yield return null;
+        Vector2 copyOfPosition = transform.position;
+        transform.position = new Vector2(
+            transform.position.x + xAndYMovementDegrees.x * Time.deltaTime * attackSpeed,
+            transform.position.y + xAndYMovementDegrees.y * Time.deltaTime * attackSpeed
+        );
+        if (!CanMove())
+        {
+            transform.position = copyOfPosition;
+        }
     }
+
     IEnumerator AttackRoutine()
     {
+        yield return new WaitForSeconds(waitTime);
         Collider2D thisCollider = GetComponent<Collider2D>();
-        while (Time.timeScale - waitTimeStart < attackTime)
+        Collider2D playerCollider = player.GetComponent<Collider2D>();
+        Vector2 xAndYMovementDegrees = VertAndHorRatio();
+        waitTimeStart = Time.time;
+        while (Time.time - waitTimeStart < attackTime)
         {
-            Collider2D playerCollider = player.GetComponent<Collider2D>();
-            Move(attackSpeed);
+            Lung(attackSpeed, xAndYMovementDegrees);
             if (thisCollider.IsTouching(playerCollider))
             {
                 GetComponent<GenericCreature>().DealDamage(player);
+                break;
             }
             yield return null;
         }
+        isAttacking = false;
         StopCoroutine(thisCoroutine);
         yield return null;
     }
