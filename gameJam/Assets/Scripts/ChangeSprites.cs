@@ -34,7 +34,6 @@ public class ChangeSprites : MonoBehaviour
         else
         {
             this.GetComponent<SpriteRenderer>().sprite = idleGhost;
-
         }
     }
 }
