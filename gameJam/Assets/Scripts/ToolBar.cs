@@ -31,14 +31,12 @@ public class ToolBar : MonoBehaviour
     }
     public GameObject RemoveToolFromBar(GameObject givenCellImage)
     {
-        Debug.Log("UsingTool"); 
         int slotNum = FindToolCellSlot(givenCellImage);
         GameObject cell = cellArray[slotNum];
         cell.transform.GetChild(0).GetComponent<Image>().enabled = false;
         GameObject tool = cell.transform.GetChild(1).gameObject;
         tool.transform.SetParent(null);
         return tool;
-        Debug.Log("UsingTool");
     }
     private int FindToolCellSlot(GameObject givenCellImage)
     {

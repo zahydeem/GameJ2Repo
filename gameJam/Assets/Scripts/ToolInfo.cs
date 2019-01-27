@@ -10,7 +10,9 @@ public class ToolInfo : Interactable
 
     protected override void Action()
     {
-        if (consumable)
+        GenericCreature genericPlayer = GameController.gameController.player.GetComponent<GenericCreature>();
+        if (consumable && (genericPlayer.currentHealth < genericPlayer.maxHealth ||
+        genericPlayer.currentHealth + healthRestore < genericPlayer.maxHealth))
         {
             Consume();
         }
