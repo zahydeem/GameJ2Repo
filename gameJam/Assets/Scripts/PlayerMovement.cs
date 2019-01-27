@@ -57,17 +57,17 @@ public class PlayerMovement : AbstractMovement
 
     private void Flip()
     {
-        if (Input.GetAxis("HorizontalKey") == 1 && dir != Dir.right)
+        if (Input.GetAxis("VerticalKey") == 1 && dir != Dir.up)
         {
-            dir = Dir.right;
+            dir = Dir.up;
         }
         else if (Input.GetAxis("HorizontalKey") == -1 && dir != Dir.left)
         {
             dir = Dir.left;
         }
-        else if (Input.GetAxis("VerticalKey") == 1 && dir != Dir.up)
+        else if (Input.GetAxis("HorizontalKey") == 1 && dir != Dir.right)
         {
-            dir = Dir.up;
+            dir = Dir.right;
         }
         else if (Input.GetAxis("VerticalKey") == -1 && dir != Dir.down)
         {
@@ -99,14 +99,54 @@ public class PlayerMovement : AbstractMovement
     **/
     public void Attack()
     {
-        Vector2[] points = DetermineSwingArea();
+        Vector2 centerPoint = DetermineSwingArea();
 
-        Collider2D[] collidersAttack = Physics2D.OverlapAreaAll(points[0], points[1]);
+        Collider2D[] collidersAttack = Physics2D.OverlapBoxAll(centerPoint, new Vector2(swingSize/2, swingSize/2), 0f);
+        foreach (Collider2D collider in collidersAttack)
+        {
+            if (collider.tag == "Enemy")
+            {
+                GetComponent<GenericCreature>().DealDamage(collider.gameObject);
+            }
+        }
     }
 
-    private Vector2[] DetermineSwingArea()
+    private Vector2 DetermineSwingArea()
     {
-        //if (dir = Dir.)
-        return null;
+        Vector2 point = new Vector2();
+        float halfSwingSize = swingSize / 2;
+        if (dir == Dir.up)
+        {
+            point = new Vector2(
+                0f,
+                halfSwingSize
+            );
+        }
+        else if(dir == Dir.left)
+        {
+            point = new Vector2(
+                -halfSwingSize,
+                0f
+            );
+        }
+        else if (dir == Dir.right)
+        {
+            point = new Vector2(
+                halfSwingSize,
+                0f
+            );
+        }
+        else if (dir == Dir.down)
+        {
+            point = new Vector2(
+                0f,
+                -halfSwingSize
+            );
+        }
+        point = new Vector2(
+            transform.position.x + point.x,
+            transform.position.y + point.y
+        );
+        return point;
     }
 }

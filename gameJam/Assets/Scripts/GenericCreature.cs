@@ -20,6 +20,15 @@ public class GenericCreature : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    public void AddHealth(int healthGained)
+    {
+        currentHealth += healthGained;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
+
     public void DealDamage(GameObject objectTakingDamage)
     {
         int damage = naturalDamage;
@@ -45,6 +54,6 @@ public class GenericCreature : MonoBehaviour
     //TODO
     private void Die()
     {
-
+        Destroy(this.gameObject);
     }
 }
