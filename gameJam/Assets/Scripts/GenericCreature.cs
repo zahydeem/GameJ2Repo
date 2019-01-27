@@ -10,6 +10,7 @@ public class GenericCreature : MonoBehaviour
     public int naturalDamage;
     
     private Animator anim;
+    private Animator Planim;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,10 @@ public class GenericCreature : MonoBehaviour
         if (gameObject.tag == "Enemy")
         {
             anim = GetComponent<Animator>();
+        }
+        if (gameObject.tag == "Player")
+        {
+            Planim = GetComponent<Animator>();
         }
     }
 
@@ -65,6 +70,10 @@ public class GenericCreature : MonoBehaviour
         if (gameObject.tag == "Enemy")
         {
             anim.SetInteger("Plau", 0);
+        }
+        if (gameObject.tag == "Player")
+        {
+            Planim.SetInteger("ourdie", 0);
         }
         StartCoroutine(WaitForDeath());
 
