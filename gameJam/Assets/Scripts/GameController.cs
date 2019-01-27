@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
 
     public GameObject[] currentBar;
 
-    public GameObject toolBar;
+    public static GameObject toolBar;
 
 
     // Start is called before the first frame update
