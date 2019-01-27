@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : AbstractMovement
 {
+    public Sprite frontGhost, backGhost, idleGhost, sideMoveGhost;
+
     float moveSpeed = 4f;
     Vector3 forward, right;
     ContactFilter2D contactFilter;
-    float swingSize = 1f;
+    public float reach = 1f;
     float swingSpeed = 400f;
     IEnumerator thisCoroutine;
     Transform swordTransform;
@@ -34,11 +36,17 @@ public class PlayerMovement : AbstractMovement
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
         dir = Dir.right;
         isAttacking = false;
-
+        
     }
+
 
     private void FixedUpdate()
     {
+        Collider2D[] colliderList = collidersWithinRange();
+        foreach (Collider2D collider in colliderList)
+        {
+            Debug.Log("Collider witin Range Name:" + collider.name);
+        }
         Vector3 copyOfPosition = transform.position;
         float adjustedMoveSpeed = moveSpeed;
         if (Input.GetAxis("HorizontalKey") != 0 && Input.GetAxis("VerticalKey") != 0)
@@ -54,8 +62,11 @@ public class PlayerMovement : AbstractMovement
         {
             transform.position = copyOfPosition;
         }
-        Flip();
-        FlipHor();
+        if (!isAttacking)
+        {
+            Flip();
+            FlipHor();
+        }
     }
 
     private void Flip()
@@ -63,18 +74,26 @@ public class PlayerMovement : AbstractMovement
         if (Input.GetAxis("VerticalKey") == 1)
         {
             dir = Dir.up;
+            this.GetComponent<SpriteRenderer>().sprite = backGhost;
         }
         else if (Input.GetAxis("HorizontalKey") == -1)
         {
             dir = Dir.left;
+            this.GetComponent<SpriteRenderer>().sprite = sideMoveGhost;
         }
         else if (Input.GetAxis("HorizontalKey") == 1)
         {
             dir = Dir.right;
+            this.GetComponent<SpriteRenderer>().sprite = sideMoveGhost;
         }
         else if (Input.GetAxis("VerticalKey") == -1)
         {
             dir = Dir.down;
+            this.GetComponent<SpriteRenderer>().sprite = frontGhost;
+        }
+        else if ((dir == Dir.left || dir == Dir.right) && Input.GetAxis("HorizontalKey") == 0)
+        {
+            this.GetComponent<SpriteRenderer>().sprite = idleGhost;
         }
     }
 
@@ -106,9 +125,7 @@ public class PlayerMovement : AbstractMovement
         {
             isAttacking = true;
             SwingSword();
-            Vector2 centerPoint = DetermineSwingArea();
-
-            Collider2D[] collidersAttack = Physics2D.OverlapBoxAll(centerPoint, new Vector2(swingSize / 2, swingSize / 2), 0f);
+            Collider2D[] collidersAttack = collidersWithinRange();
             foreach (Collider2D collider in collidersAttack)
             {
                 if (collider.tag == "Enemy")
@@ -180,10 +197,50 @@ public class PlayerMovement : AbstractMovement
         yield return null;
     }
 
-    private Vector2 DetermineSwingArea()
+    public bool isWithinRange(GameObject givenGameObject)
+    {
+        Collider2D[] nearbyColliders = collidersWithinRange();
+        foreach (Collider2D collider in nearbyColliders)
+        {
+            if (givenGameObject == collider.gameObject)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Collider2D[] collidersWithinRange()
+    {
+        Vector2 centerPoint = DetermineReachableArea(reach);
+
+        float xReach = reach;
+        float yReach = reach;
+        if (dir == Dir.up || dir == Dir.down)
+        {
+            yReach /= 2;
+        }
+        else
+        {
+            xReach /= 2;
+        }
+
+        return Physics2D.OverlapBoxAll(centerPoint, new Vector2(xReach, yReach), 0f);
+        /*
+        foreach (Collider2D collider in collidersAttack)
+        {
+            if (collider.tag == "Enemy")
+            {
+                GetComponent<GenericCreature>().DealDamage(collider.gameObject);
+            }
+        }
+        */
+    }
+
+    private Vector2 DetermineReachableArea(float boxSize)
     {
         Vector2 point = new Vector2();
-        float halfSwingSize = swingSize / 2;
+        float halfSwingSize = boxSize / 2;
         if (dir == Dir.up)
         {
             point = new Vector2(
