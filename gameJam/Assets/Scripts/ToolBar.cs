@@ -14,7 +14,7 @@ public class ToolBar : MonoBehaviour
     {
         numCells = GameController.gameController.toolBarSize;
         Populate();
-        GameController.gameController.toolBar = gameObject;
+        GameController.gameController.toolBar = this.gameObject;
     }
 
     public void PickUpTool(GameObject tool)
@@ -29,9 +29,25 @@ public class ToolBar : MonoBehaviour
             toolImage.enabled = true;
         }
     }
-    public void DropTool()
+    public GameObject RemoveToolFromBar(GameObject givenCellImage)
     {
-
+        int slotNum = FindToolCellSlot(givenCellImage);
+        GameObject cell = cellArray[slotNum];
+        cell.transform.GetChild(0).GetComponent<Image>().enabled = false;
+        GameObject tool = cell.transform.GetChild(1).gameObject;
+        tool.transform.SetParent(null);
+        return tool;
+    }
+    private int FindToolCellSlot(GameObject givenCellImage)
+    {
+        for (int i = 0; i < numCells; i++)
+        {
+            if (cellArray[i].transform.GetChild(0).gameObject == givenCellImage)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
     public int FindAvailableToolSlot()
     {

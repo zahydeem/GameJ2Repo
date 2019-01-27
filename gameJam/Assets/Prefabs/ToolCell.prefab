@@ -206,12 +206,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1558484986, guid: e6757a77fcf7c419e88ca74f9a15eb14, type: 3}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1558484987, guid: e6757a77fcf7c419e88ca74f9a15eb14, type: 3}
+        m_MethodName: UseTool
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 5536159568493872197}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
