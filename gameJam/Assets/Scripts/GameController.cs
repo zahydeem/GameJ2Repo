@@ -34,6 +34,7 @@ public class GameController : MonoBehaviour
             Collider2D[] allClicked = SelectObjects();
             for (int i = 0; i < allClicked.Length; i++)
             {
+                Debug.Log(allClicked[i].name);
                 if (player.GetComponent<PlayerMovement>().isWithinRange(allClicked[i].gameObject))
                 {
                     if (allClicked[i].gameObject.GetComponent<ToolInfo>() != null)
@@ -45,7 +46,8 @@ public class GameController : MonoBehaviour
                     }
                     else if (allClicked[i].tag == "Note")
                     {
-                        note.GetComponent<NoteSelect>().Mess();
+            
+                        allClicked[i].GetComponent<NoteSelect>().Mess();
                         return;
                     }
                 }

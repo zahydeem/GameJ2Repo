@@ -9,27 +9,21 @@ public class NoteSelect : MonoBehaviour
     public Text text;
     public Image popup;
     GameObject note;
+    public string story;
 
     // Start is called before the first frame update
     void Awake()
     {
        popup.enabled = false;
        text.enabled = false;
-        print("nope");
+      
     }
     public void Mess()
     {
         popup.enabled = true;
         text.enabled = true;
-
-        if (note.name == "Note1")
-        {
-            text.text = "MOVE TO THE NEXT ISLAND";
-        }
-        else if (note.name == "Note2")
-        {
-            text.text = "Just Give up";
-        }
+        text.text = story;
+        
     }
 
     // Update is called once per frame
