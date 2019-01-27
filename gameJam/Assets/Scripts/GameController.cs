@@ -56,13 +56,28 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private Collider2D[] SelectObjects()
+    {
+        return Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    }
+
     public void PickUpTool(GameObject tool)
     {
         toolBar.GetComponent<ToolBar>().PickUpTool(tool);
     }
 
-    private Collider2D[] SelectObjects()
+    public void UseTool(GameObject cellImage)
     {
-        return Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        Debug.Log("UsingTool");
+        GameObject tool = toolBar.GetComponent<ToolBar>().RemoveToolFromBar(cellImage);
+        Debug.Log("Found a tool: " + tool.name);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            tool.GetComponent<ToolInfo>().DropTool();
+        }
+        else
+        {
+            tool.GetComponent<ToolInfo>().UseTool();
+        }
     }
 }

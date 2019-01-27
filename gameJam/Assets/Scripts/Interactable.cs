@@ -6,19 +6,6 @@ public abstract class Interactable : MonoBehaviour
 {
     private float range = 1f;
 
-    private void Update()
-    {
-        playerWithinRange();
-    }
-
-    private void OnMouseUpAsButton()
-    {
-        if (playerWithinRange())
-        {
-            Action();
-        }
-    }
-
     public bool playerWithinRange()
     {
         return Vector2.Distance(GameController.gameController.player.transform.position, transform.position) < range;

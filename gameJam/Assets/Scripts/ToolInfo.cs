@@ -10,7 +10,10 @@ public class ToolInfo : Interactable
 
     protected override void Action()
     {
-        GameController.gameController.PickUpTool(gameObject);
+        if (consumable)
+        {
+            Consume();
+        }
     }
 
     public int GetDamage()
@@ -19,13 +22,18 @@ public class ToolInfo : Interactable
     }
 
     public void Consume()
-    {
-        if (consumable)
-        {
-            GameController.gameController.player.GetComponent<GenericCreature>().AddHealth(healthRestore);
-        }
+    { 
+        GameController.gameController.player.GetComponent<GenericCreature>().AddHealth(healthRestore);
         Destroy(this.gameObject);
     }
+    public void DropTool()
+    {
+        transform.position = GameController.gameController.player.transform.position;
+        gameObject.SetActive(true);
+    }
+    public void UseTool()
+    {
+        Action();
+    }
 
-    
 }
