@@ -6,6 +6,7 @@ public class AbstractMovement : MonoBehaviour
 {
     Vector2 lastPosition;
     SpriteRenderer spriteRenderer;
+    IEnumerator thisCoroutine;
 
     enum HorDir { left, right };
     HorDir horDir;
@@ -74,17 +75,30 @@ public class AbstractMovement : MonoBehaviour
 
     protected void PushOther(GameObject otherGameObject, float strength)
     {
+        thisCoroutine = PushRoutine(otherGameObject, strength);
+        StartCoroutine(thisCoroutine);
+    }
+
+    IEnumerator PushRoutine(GameObject otherGameObject, float strength)
+    {
         Vector2 XandYRatio = distanceXAndYRatio(otherGameObject);
-        otherGameObject.transform.position = new Vector2(
+        Vector3 pushTo = new Vector2(
             otherGameObject.transform.position.x + XandYRatio.x * strength,
             otherGameObject.transform.position.y + XandYRatio.y * strength
         );
+        while (otherGameObject.transform.position != pushTo)
+        {
+            otherGameObject.transform.position = Vector2.MoveTowards(otherGameObject.transform.position, pushTo, Time.deltaTime * strength * 15);
+            yield return null;
+        }
+        StopCoroutine(thisCoroutine);
+        yield return null;
     }
 
     protected Vector2 distanceXAndYRatio(GameObject otherObject)
     {
-        float xDis = transform.position.x - otherObject.transform.position.x;
-        float yDis = transform.position.y - otherObject.transform.position.y;
+        float xDis = otherObject.transform.position.x - transform.position.x;
+        float yDis = otherObject.transform.position.y - transform.position.y;
         float totalDis = xDis + yDis;
 
         return new Vector2(xDis / totalDis, yDis / totalDis);

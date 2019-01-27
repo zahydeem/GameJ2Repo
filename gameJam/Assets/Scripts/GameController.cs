@@ -23,7 +23,8 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             GameObject clicked = SelectObject();
-            if (clicked != null && !clicked.name.Equals("Ground") && player.GetComponent<PlayerMovement>().isWithinRange(clicked))
+            Debug.Log(clicked.name);
+            if (clicked != null && player.GetComponent<PlayerMovement>().isWithinRange(clicked))
             {
                 if (SelectObject().tag == "Interactable")
                 {

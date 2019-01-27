@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : AbstractMovement
 {
     public Sprite frontGhost, backGhost, idleGhost, sideMoveGhost;
-    float strength = 1f;
+    float strength = 0.25f;
 
     float moveSpeed = 4f;
     Vector3 forward, right;
