@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1096363268134954596}
   - component: {fileID: 3139653431699151046}
   - component: {fileID: 3319887121442257111}
+  - component: {fileID: 60659431947714777}
   - component: {fileID: 5564657893251961660}
   m_Layer: 0
   m_Name: Enemy
@@ -111,6 +112,22 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   naturalDamage: 2
+--- !u!114 &60659431947714777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096363268134954597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5325865c102be784bb810e13378054b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  D1: {fileID: 21300000, guid: 7400e013d05b5444d8b6db4589a7d272, type: 3}
+  D2: {fileID: 21300000, guid: 7e208a3196f39ae4288add95f3602663, type: 3}
+  D3: {fileID: 21300000, guid: 5d9693b962d87d9409aca98388041004, type: 3}
+  speed: 0.5
 --- !u!61 &5564657893251961660
 BoxCollider2D:
   m_ObjectHideFlags: 0
