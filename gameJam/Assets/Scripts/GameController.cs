@@ -16,4 +16,9 @@ public class GameController : MonoBehaviour
         gameController = this;
         player = transform.GetChild(0).gameObject;
     }
+
+    private void OnMouseUp()
+    {
+
+    }
 }

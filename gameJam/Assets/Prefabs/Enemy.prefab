@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1096363268134954603}
   - component: {fileID: 1096363268134954596}
-  - component: {fileID: 1096363268134954602}
+  - component: {fileID: 3139653431699151046}
+  - component: {fileID: 3319887121442257111}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1096363268134954602
+--- !u!114 &3139653431699151046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,8 +90,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1096363268134954597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 033cf14b3875b414a8779aefba534d69, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b4d3da6fdbee4f038a09a6f11205bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.5
   closeDistance: 1
+--- !u!114 &3319887121442257111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096363268134954597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b74c98090d04e6a9eed2b28a1b6d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
+  naturalDamage: 2

@@ -26,9 +26,9 @@ public class EnemyMovement : AbstractMovement
         Move();
     }
 
-    private void Move()
+    protected void Move()
     {
-        if (spriteRenderer.isVisible && !IsCloseEnough())
+        if (spriteRenderer.isVisible)
         {
             Vector2 copyOfPosition = transform.position;
             Vector2 xAndYMovmentDegrees = VertAndHorRatio();
@@ -44,6 +44,7 @@ public class EnemyMovement : AbstractMovement
         }
     }
 
+    /*
     private bool IsCloseEnough()
     {
         Debug.Log((player.transform.position.y - transform.position.y) + " " + (playerSR.bounds.min.x - transform.position.x));
@@ -51,6 +52,7 @@ public class EnemyMovement : AbstractMovement
                     Mathf.Abs(playerSR.bounds.min.y - transform.position.y) < closeDistance;
         return ret;
     }
+    */   
 
     private Vector2 VertAndHorRatio()
     {
