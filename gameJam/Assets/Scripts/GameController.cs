@@ -36,13 +36,13 @@ public class GameController : MonoBehaviour
                 if (SelectObject().tag == "Interactable")
                 {
                     player.GetComponent<PlayerMovement>().ReachFor();
-                    print("jar");
+                    
 
                 }
                 else if (SelectObject().tag == "Note")
                 {
-                    print( "if");
-                    text.text = "Yay";
+                    
+                    text.text = "MOVE TO THE NEXT ISLAND";
                 }
                 else
                 {
