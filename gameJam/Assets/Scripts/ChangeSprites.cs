@@ -19,17 +19,22 @@ public class ChangeSprites : MonoBehaviour
         {
             this.GetComponent<SpriteRenderer>().sprite = backGhost;
         }
-        if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
             this.GetComponent<SpriteRenderer>().sprite = sideMoveGhost;
         }
-        if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             this.GetComponent<SpriteRenderer>().sprite = frontGhost;
         }
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             this.GetComponent<SpriteRenderer>().sprite = sideMoveGhost;
+        }
+        else
+        {
+            this.GetComponent<SpriteRenderer>().sprite = idleGhost;
+
         }
     }
 }
