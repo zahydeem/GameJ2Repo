@@ -70,7 +70,7 @@ public class PlayerMovement : AbstractMovement
         {
             dir = Dir.up;
             this.GetComponent<SpriteRenderer>().sprite = backGhost;
-            handAnim.SetInteger(variableName, 4);
+            handAnim.SetInteger(variableName, 0);
         }
         else if (Input.GetAxis("HorizontalKey") == -1)
         {
@@ -88,7 +88,7 @@ public class PlayerMovement : AbstractMovement
         {
             dir = Dir.down;
             this.GetComponent<SpriteRenderer>().sprite = frontGhost;
-            handAnim.SetInteger(variableName, 3);
+            handAnim.SetInteger(variableName, 0);
         }
         else if ((dir == Dir.left || dir == Dir.right) && Input.GetAxis("HorizontalKey") == 0)
         {

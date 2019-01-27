@@ -15,7 +15,10 @@ public class GenericCreature : MonoBehaviour
     void Start()
     {
         RefreshHealth();
-        anim = GetComponent<Animator>();
+        if (gameObject.tag == "Enemy")
+        {
+            anim = GetComponent<Animator>();
+        }
     }
 
     public void RefreshHealth()
@@ -58,8 +61,11 @@ public class GenericCreature : MonoBehaviour
     //TODO
     private void Die()
     {
-        
-        anim.SetInteger("Plau",0);
+
+        if (gameObject.tag == "Enemy")
+        {
+            anim.SetInteger("Plau", 0);
+        }
         StartCoroutine(WaitForDeath());
 
         
